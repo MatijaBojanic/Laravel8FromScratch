@@ -17,9 +17,11 @@ use \Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
-    $posts = Post::all();
+//    \Illuminate\Support\Facades\DB::listen(function($query){
+//      logger($query->sql);
+//    });
     return view('posts',[
-        'posts' => $posts
+        'posts' => Post::with('category')->get()
     ]);
 });
 
